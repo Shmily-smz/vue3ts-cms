@@ -1,0 +1,44 @@
+//ts的配置文件
+{
+  "compilerOptions": {
+    //目标代码， es6以后的都是esnext 。就是把ts转成es6,es7，但是最后都是交给babel来转为es5，所以也没啥用好像
+    "target": "esnext",
+    //目标代码需要使用的是模块化方案
+    "module": "esnext",
+    //严格模式检查
+    "strict": true,
+    //对jsx进行怎样处理，preserve不转化，因为babel可以帮忙处理
+    "jsx": "preserve",
+    //按照node的方式去解析模块
+    "moduleResolution": "node",
+    //跳过对一些库的类型检测
+    "skipLibCheck": true,
+    //export default/module.export={}
+    //ex module和common js能不能一起用
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    //要不要生成映射文件（ts ->js）
+    "sourceMap": true,
+    //解析路径
+    "baseUrl": ".",
+    "types": ["webpack-env"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  //在哪里的ts代码需要解析
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  //当你一个vue文件引入一个axios，但是这些东西都在node_modules中，所以还是会被解析，所以在这里排除一下
+  "exclude": ["node_modules"]
+}
